@@ -1,6 +1,4 @@
-/*
- * MOHAMED SAHRAOUI 1/DAW
- */
+//MOHAMED SAHRAOUI 1DAW
 
 package org.iesalandalus.programacion.alquilervehiculos.modelo.dominio;
 

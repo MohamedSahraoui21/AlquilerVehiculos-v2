@@ -1,3 +1,5 @@
+//MOHAMED SAHRAOUI 1DAW
+
 package org.iesalandalus.programacion.alquilervehiculos.modelo;
 
 import java.time.LocalDate;
@@ -41,7 +43,7 @@ public abstract class Modelo {
 	}
 
 	public void terminar() {
-		System.out.print("El modelo ha terminado :)");
+		System.out.print("El modelo ha terminado.");
 	}
 
 	public abstract void insertar(Cliente cliente) throws OperationNotSupportedException;
