@@ -25,7 +25,7 @@ import javax.xml.parsers.ParserConfigurationException;
 public class Vehiculos implements IVehiculos {
 	
 	private static final File FICHERO_VEHICULOS = new File(
-			"datos%svehiculos.xml");
+			"C:\\Users\\Archen\\git\\AlquilerVehiculos-v2\\datos\\vehiculos.xml");
 	private static final String RAIZ = "vehiculos";
 	private static final String VEHICULO = "vehiculo";
 	private static final String MARCA = "marca";
