@@ -1,5 +1,3 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.modelo;
 
 import java.time.LocalDate;
@@ -14,14 +12,23 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IAlquilere
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IClientes;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IFuenteDatos;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos;
+//definir Modelo como clase abstracta
 
 public abstract class Modelo {
 
 	private IClientes clientes;
 	private IAlquileres alquileres;
 	private IVehiculos vehiculos;
-	
-     protected IClientes getClientes() {
+	private IFuenteDatos fuenteDatos;
+
+	protected Modelo(FactoriaFuenteDatos factoriaFuenteDatos) {
+		setFuenteDatos(factoriaFuenteDatos.crear());
+		clientes = fuenteDatos.crearClientes();
+		vehiculos = fuenteDatos.crearVehiculos();
+		alquileres = fuenteDatos.crearAlquileres();
+	}
+
+	protected IClientes getClientes() {
 		return clientes;
 	}
 
@@ -34,16 +41,16 @@ public abstract class Modelo {
 	}
 
 	protected void setFuenteDatos(IFuenteDatos fuenteDatos) {
+		if (fuenteDatos == null) {
+			throw new NullPointerException("La fuente de Datos no puede ser nula");
+		}
+		this.fuenteDatos = fuenteDatos;
 	}
 
 	public void comenzar() {
 		clientes.comenzar();
 		vehiculos.comenzar();
 		alquileres.comenzar();
-	}
-
-	public void terminar() {
-		System.out.print("El modelo ha terminado.");
 	}
 
 	public abstract void insertar(Cliente cliente) throws OperationNotSupportedException;
@@ -80,5 +87,12 @@ public abstract class Modelo {
 	public abstract List<Alquiler> getListaAlquileres(Cliente cliente);
 
 	public abstract List<Alquiler> getListaAlquileres(Vehiculo vehiculo);
+
+	public void terminar() {
+		clientes.terminar();
+		vehiculos.terminar();
+		alquileres.terminar();
+		System.out.println("el modelo ha terminado");
+	}
 
 }

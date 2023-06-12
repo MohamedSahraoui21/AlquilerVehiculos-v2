@@ -1,5 +1,3 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.ficheros;
 
 import java.io.File;
@@ -41,11 +39,11 @@ public class Clientes implements IClientes {
 
 	public void comenzar() {
 		Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_CLIENTES);
-		if(documento != null) {
+		if (documento != null) {
 			leerDom(documento);
-			System.out.print("El documento se ha leido correctamente");
-		}else {
-			System.out.print("ERROR: El documento no se ha leido correctamente");
+			System.out.println("El documento clientes se ha leido correctamente");
+		} else {
+			System.out.println("ERROR: El documento no se ha leido correctamente");
 		}
 	}
 
@@ -57,8 +55,10 @@ public class Clientes implements IClientes {
 				try {
 					insertar(getCliente((Element) cliente));
 				} catch (NullPointerException | IllegalArgumentException | OperationNotSupportedException e) {
-					System.out.printf("Error al procesar el cliente : %d --> %s%n", i, e.getMessage());
+					System.out.println(e.getMessage());
+					System.out.printf("ERROR: error al lanzar el cliente: %s%n", i);
 				}
+
 			}
 		}
 	}
@@ -101,51 +101,38 @@ public class Clientes implements IClientes {
 		return new ArrayList<>(coleccionClientes);
 	}
 
+	// voy a utlizar un metodo de arraylist (.Add) para añadir un valor a la lista
+
 	@Override
 	public void insertar(Cliente cliente) throws OperationNotSupportedException {
 		if (cliente == null) {
 			throw new NullPointerException("ERROR: No se puede insertar un cliente nulo.");
 		}
+
 		if (coleccionClientes.contains(cliente)) {
 			throw new OperationNotSupportedException("ERROR: Ya existe un cliente con ese DNI.");
 		}
+
 		coleccionClientes.add(cliente);
 	}
-	@Override
-	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
-		if (cliente == null) {
-			throw new NullPointerException("ERROR: No se puede modificar un cliente nulo.");
-		}
-		Cliente clienteBuscado = buscar(cliente);
-		if (clienteBuscado == null) {
-			throw new OperationNotSupportedException("ERROR: No existe ningún cliente con ese DNI.");
-		}
-		if (nombre != null && !nombre.isBlank()) {
-			clienteBuscado.setNombre(nombre);
-		}
-		if (telefono != null && !telefono.isBlank()) {
-			clienteBuscado.setTelefono(telefono);
-		}
 
-	}
-
+	// voy a utlizar un metodo de Arraylist (.get) para buscar un valor en la lista
 	@Override
 	public Cliente buscar(Cliente cliente) {
-		Cliente clienteEncontrado;
 		if (cliente == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un cliente nulo.");
 		}
-		int indice = coleccionClientes.indexOf(cliente);
-		if (indice != -1) {
-			clienteEncontrado = coleccionClientes.get(indice);
-		} else {
-			clienteEncontrado = null;
+		if (coleccionClientes.contains(cliente)) {
+			return cliente;
 		}
-		return clienteEncontrado;
+		return null;
 	}
 
+	// voy a utilizar un metodo de arraylist (.remove) para borrar un elemento de la
+	// lista
 	@Override
 	public void borrar(Cliente cliente) throws OperationNotSupportedException {
+
 		if (cliente == null) {
 			throw new NullPointerException("ERROR: No se puede borrar un cliente nulo.");
 		}
@@ -155,5 +142,25 @@ public class Clientes implements IClientes {
 		coleccionClientes.remove(cliente);
 	}
 
-	
+	// voy a utilizar un metodo de Arraylist (.set()) para modificar una lista
+	@Override
+	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
+
+		if (cliente == null) {
+			throw new NullPointerException("ERROR: No se puede modificar un cliente nulo.");
+		}
+		if (!coleccionClientes.contains(cliente)) {
+			throw new OperationNotSupportedException("ERROR: No existe ningún cliente con ese DNI.");
+		} else {
+			if (nombre != null && !nombre.trim().isEmpty()) {
+				cliente.setNombre(nombre);
+			}
+
+			if (telefono != null && !telefono.trim().isEmpty()) {
+				cliente.setTelefono(telefono);
+			}
+		}
+
+	}
+
 }

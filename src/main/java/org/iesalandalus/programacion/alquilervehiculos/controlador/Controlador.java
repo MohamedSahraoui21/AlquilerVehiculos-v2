@@ -1,5 +1,3 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.controlador;
 
 import java.time.LocalDate;
@@ -37,7 +35,7 @@ public class Controlador {
 
 	public void terminar() {
 		modelo.terminar();
-		vista.terminar();
+		
 	}
 
 	public void insertar(Cliente cliente) throws OperationNotSupportedException {

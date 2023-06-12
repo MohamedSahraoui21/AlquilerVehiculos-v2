@@ -1,5 +1,3 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.modelo.negocio;
 
 public interface IFuenteDatos {

@@ -1,5 +1,3 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.modelo.negocio;
 
 import java.time.LocalDate;
@@ -21,7 +19,7 @@ public interface IAlquileres {
 
 	List<Alquiler> get(Cliente cliente);
 
-	List<Alquiler> get(Vehiculo vehiculo);
+	List<Alquiler> get(Vehiculo turismo);
 
 	void insertar(Alquiler alquiler) throws OperationNotSupportedException;
 
@@ -29,7 +27,7 @@ public interface IAlquileres {
 
 	void devolver(Vehiculo vehiculo, LocalDate fechaDevolucion) throws OperationNotSupportedException;
 
-	Alquiler buscar(Alquiler alquileres);
+	Alquiler buscar(Alquiler alquiler);
 
 	void borrar(Alquiler alquiler) throws OperationNotSupportedException;
 

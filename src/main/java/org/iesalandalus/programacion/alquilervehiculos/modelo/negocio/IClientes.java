@@ -1,5 +1,3 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.modelo.negocio;
 
 import java.util.List;
@@ -18,10 +16,10 @@ public interface IClientes {
 
 	void insertar(Cliente cliente) throws OperationNotSupportedException;
 
-	void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException;
-
-	Cliente buscar(Cliente clientes);
+	Cliente buscar(Cliente cliente);
 
 	void borrar(Cliente cliente) throws OperationNotSupportedException;
+
+	void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException;
 
 }

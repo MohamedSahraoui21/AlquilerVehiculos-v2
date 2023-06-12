@@ -1,5 +1,3 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.vista.texto;
 
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Autobus;
@@ -22,7 +20,7 @@ public enum TipoVehiculo {
 
 	public static TipoVehiculo get(int ordinal) {
 		if (!esOrdinalValido(ordinal)) {
-			throw new IllegalArgumentException("Error: esta opción no es valida");
+			throw new IllegalArgumentException("Error: la opción no es válida.");
 		}
 		return TipoVehiculo.values()[ordinal];
 	}

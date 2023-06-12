@@ -21,9 +21,9 @@ import org.xml.sax.SAXException;
 public class UtilidadesXml {
 
 	private UtilidadesXml() {
-		}
+	}
 
-	public static DocumentBuilder crearConstructorDocumentoXml(){
+	public static DocumentBuilder crearConstructorDocumentoXml() {
 		DocumentBuilder constructorDocumentos = null;
 		try {
 			DocumentBuilderFactory fabricaConstructor = DocumentBuilderFactory.newInstance();
@@ -32,11 +32,11 @@ public class UtilidadesXml {
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
-		
+
 		return constructorDocumentos;
 	}
 
-	public static void escribirXmlAFichero(Document documento, File salida){
+	public static void escribirXmlAFichero(Document documento, File salida) {
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = null;
 		try {
@@ -53,14 +53,14 @@ public class UtilidadesXml {
 		}
 	}
 
-	public static Document leerXmlDeFichero(File ficheroXml){
-		
+	public static Document leerXmlDeFichero(File ficheroXml) {
+
 		Document documento = null;
 		try {
 			DocumentBuilder constructorDocumento = crearConstructorDocumentoXml();
-			if(constructorDocumento!=null) {
-			documento = constructorDocumento.parse(ficheroXml);
-			documento.getDocumentElement().normalize();
+			if (constructorDocumento != null) {
+				documento = constructorDocumento.parse(ficheroXml);
+				documento.getDocumentElement().normalize();
 			}
 		} catch (SAXException e) {
 			e.printStackTrace();

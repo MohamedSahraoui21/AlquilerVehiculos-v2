@@ -1,5 +1,3 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.modelo;
 
 import java.time.LocalDate;
@@ -11,11 +9,12 @@ import javax.naming.OperationNotSupportedException;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
+//modeloCascada es una clase hija de Modelo
 
 public class ModeloCascada extends Modelo {
 
 	public ModeloCascada(FactoriaFuenteDatos factoriaFuenteDatos) {
-		super();
+		super(factoriaFuenteDatos);
 	}
 
 	@Override
@@ -33,15 +32,15 @@ public class ModeloCascada extends Modelo {
 		if (alquiler == null) {
 			throw new NullPointerException("ERROR: No se puede realizar un alquiler nulo.");
 		}
-		Cliente clienteBuscado = buscar(alquiler.getCliente());
-		Vehiculo vehiculoBuscado = buscar(alquiler.getVehiculo());
-		if (clienteBuscado == null) {
+		Cliente cliente = buscar(alquiler.getCliente());
+		Vehiculo vehiculo = buscar(alquiler.getVehiculo());
+		if (cliente == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el cliente del alquiler.");
 		}
-		if (vehiculoBuscado == null) {
+		if (vehiculo == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el turismo del alquiler.");
 		}
-		getAlquileres().insertar(new Alquiler(clienteBuscado, vehiculoBuscado, alquiler.getFechaAlquiler()));
+		getAlquileres().insertar(new Alquiler(cliente, vehiculo, alquiler.getFechaAlquiler()));
 	}
 
 	public Cliente buscar(Cliente cliente) {
@@ -88,45 +87,45 @@ public class ModeloCascada extends Modelo {
 
 	@Override
 	public List<Cliente> getListaClientes() {
-		List<Cliente> listaNueva = new ArrayList<>();
+		List<Cliente> clientesLista = new ArrayList<>();
 		for (Cliente cliente : getClientes().get()) {
-			listaNueva.add(new Cliente(cliente));
+			clientesLista.add(new Cliente(cliente));
 		}
-		return listaNueva;
+		return clientesLista;
 	}
 
 	@Override
 	public List<Vehiculo> getListaVehiculos() {
-		List<Vehiculo> listaNueva = new ArrayList<>();
+		List<Vehiculo> vehiculosLista = new ArrayList<>();
 		for (Vehiculo vehiculo : getVehiculos().get()) {
-			listaNueva.add(Vehiculo.copiar(vehiculo));
+			vehiculosLista.add(Vehiculo.copiar(vehiculo));
 		}
-		return listaNueva;
+		return vehiculosLista;
 	}
 
 	@Override
 	public List<Alquiler> getListaAlquileres() {
-		List<Alquiler> listaNueva = new ArrayList<>();
+		List<Alquiler> alquileresLista = new ArrayList<>();
 		for (Alquiler alquiler : getAlquileres().get()) {
-			listaNueva.add(new Alquiler(alquiler));
+			alquileresLista.add(new Alquiler(alquiler));
 		}
-		return listaNueva;
+		return alquileresLista;
 	}
 
 	public List<Alquiler> getListaAlquileres(Cliente cliente) {
-		List<Alquiler> listaNueva = new ArrayList<>();
+		List<Alquiler> alquileresLista1 = new ArrayList<>();
 		for (Alquiler alquiler : getAlquileres().get(cliente)) {
-			listaNueva.add(new Alquiler(alquiler));
+			alquileresLista1.add(new Alquiler(alquiler));
 		}
-		return listaNueva;
+		return alquileresLista1;
 	}
 
 	public List<Alquiler> getListaAlquileres(Vehiculo vehiculo) {
-		List<Alquiler> listaNueva = new ArrayList<>();
+		List<Alquiler> alquileresLista2 = new ArrayList<>();
 		for (Alquiler alquiler : getAlquileres().get(vehiculo)) {
-			listaNueva.add(new Alquiler(alquiler));
+			alquileresLista2.add(new Alquiler(alquiler));
 		}
-		return listaNueva;
+		return alquileresLista2;
 	}
 
 }

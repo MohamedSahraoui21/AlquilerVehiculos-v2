@@ -1,121 +1,117 @@
-//MOHAMED SAHRAOUI 1DAW
-
 package org.iesalandalus.programacion.alquilervehiculos.vista.texto;
 
-import javax.naming.OperationNotSupportedException;
-
 public enum Accion {
-	SALIR("Salir") {
+	SALIR("salir.") {
 		@Override
 		public void ejecutar() {
 			vista.terminar();
 		}
 	},
-	INSERTAR_CLIENTE("Insertar-cliente") {
+	INSERTAR_CLIENTE("insertar cliente") {
 		@Override
 		public void ejecutar() {
 			vista.insertarCliente();
 		}
 	},
-	INSERTAR_VEHICULO("Insertar-el-vehiculo") {
+	INSERTAR_VEHICULO("insertar vehiculo") {
 		@Override
 		public void ejecutar() {
 			vista.insertarVehiculo();
 		}
 	},
-	INSERTAR_ALQUILER("Insertar-el-alquiler") {
+	INSERTAR_ALQUILER("insertar alquiler") {
 		@Override
 		public void ejecutar() {
 			vista.insertarAlquiler();
 		}
 	},
-	BUSCAR_CLIENTE("Buscar-cliente") {
+	BUSCAR_CLIENTE("buscar cliente") {
 		@Override
 		public void ejecutar() {
 			vista.buscarCliente();
 		}
 	},
-	BUSCAR_VEHICULO("Buscar-vehiculo") {
+	BUSCAR_VEHICULO("buscar vehiculo") {
 		@Override
 		public void ejecutar() {
 			vista.buscarVehiculo();
 		}
 	},
-	BUSCAR_ALQUILER("Buscar-alquiler") {
+	BUSCAR_ALQUILER("buscar alquiler") {
 		@Override
 		public void ejecutar() {
 			vista.buscarAlquiler();
 		}
 	},
-	MODIFICAR_CLIENTE("Modificar-cliente") {
+	MODIFICAR_CLIENTE("modificar cliente") {
 		@Override
 		public void ejecutar() {
 			vista.modificarCliente();
 		}
 	},
-	DEVOLVER_ALQUILER_CLIENTE("Devolver-alquiler-cliente") {
+	DEVOLVER_ALQUILER_CLIENTE("devolver alquiler cliente") {
 		@Override
 		public void ejecutar() {
 			vista.devolverAlquilerCliente();
 		}
 	},
-	DEVOLVER_ALQUILER_VEHICULO("Devolver-alquiler-vehiculo") {
+	DEVOLVER_ALQUILER_VEHICULO("devolver alquiler vehiculo") {
 		@Override
 		public void ejecutar() {
 			vista.devolverAlquilerVehiculo();
 		}
 	},
-	BORRAR_CLIENTE("Borrar-cliente") {
+	BORRAR_CLIENTE("borrar cliente") {
 		@Override
 		public void ejecutar() {
 			vista.borrarCliente();
 
 		}
 	},
-	BORRAR_VEHICULO("Borrar-vehiculo") {
+	BORRAR_VEHICULO("borrar vehículo") {
 		@Override
 		public void ejecutar() {
 			vista.borrarVehiculo();
 		}
 	},
-	BORRAR_ALQUILER("Borrar-alquiler") {
+	BORRAR_ALQUILER("borrar alquiler") {
 		@Override
 		public void ejecutar() {
 			vista.borrarAlquiler();
 		}
 	},
-	LISTAR_CLIENTES("Listar-clientes") {
+	LISTAR_CLIENTES("listar clientes") {
 		@Override
 		public void ejecutar() {
 			vista.listarClientes();
 		}
 	},
-	LISTAR_VEHICULOS("Listar-vehiculos") {
+	LISTAR_VEHICULOS("listar vehículos") {
 		@Override
 		public void ejecutar() {
 			vista.listarVehiculos();
 		}
 	},
-	LISTAR_ALQUILERES("Listar-alquileres") {
+	LISTAR_ALQUILERES("listar alquileres") {
 		@Override
 		public void ejecutar() {
 			vista.listarAlquileres();
 		}
 	},
-	LISTAR_ALQUILERES_CLIENTE("Listar-alquileres-cliente") {
+	LISTAR_ALQUILERES_CLIENTE("listar alquileres cliente") {
 		@Override
 		public void ejecutar() {
 			vista.listarAlquileresCliente();
 		}
 	},
-	LISTAR_ALQUILERES_VEHICULO("Listar-alquileres-vehiculo") {
+	LISTAR_ALQUILERES_VEHICULO("listar alquileres vehículo") {
 		@Override
 		public void ejecutar() {
 			vista.listarAlquileresVehiculo();
 
 		}
 	},
-	MOSTRAR_ESTADISTICAS_MENSUALES("estadisticas-mensuales") {
+	MOSTRAR_ESTADISTICAS_MENSUALES("mostrar estadísticas mensuales") {
 		@Override
 		public void ejecutar() {
 			vista.mostrarEstadisticasMensualesTipoVehiculo();
@@ -135,24 +131,21 @@ public enum Accion {
 		Accion.vista = vista;
 	}
 
-	private static boolean esOrdinalValido(int ordinal) {
-		boolean ordinalCorrecto = true;
-		if (ordinal < 0 || ordinal >= values().length) {
-			ordinalCorrecto = false;
-		}
-		return ordinalCorrecto;
+	private static boolean esOrdinalValido(int num) {
+		return num >= 0 && num <= values().length - 1;
 	}
 
-	public static Accion get(int ordinal) throws OperationNotSupportedException {
-		if (!esOrdinalValido(ordinal)) {
-			throw new OperationNotSupportedException("el ordinal no es correcto");
+	public static Accion get(int num) {
+		if (!esOrdinalValido(num)) {
+			throw new ArrayIndexOutOfBoundsException("el ordinal no es correcto");
+
 		}
-		return values()[ordinal];
+		return values()[num];
 	}
 
 	@Override
 	public String toString() {
-		return String.format("%d-%s", ordinal(), texto);
+		return String.format("%d - %s", ordinal(), texto);
 	}
 
 }
